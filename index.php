@@ -17,7 +17,7 @@
   </head>
 
 </body>
-<div class="container">
+<div class="container row-fluid">
 <h1>Parrainage Présidentielles 2014</h1>
 <form action="." method="get">
 <p>Saisissez votre N° CIN, nous allons vérifier si vous parrainez un candidat aux élections présidentielles</p>
@@ -30,6 +30,7 @@
 	if ($presidents) print "<div class='alert alert-error'>Vous parrainez ".implode(' ',$presidents)."</div>";
 ?>
 </form>
+<small class="muted pull-right" style="position:fixed; right:5px; bottom:5px;">Contact <a href="https://twitter.com/trojette">@trojette</a> & <a href="https://twitter.com/slim404">@slim404</a> source code <a href="https://github.com/PPTN/mounachid">https://github.com/PPTN/mounachid</a></small>
 </div>
 </body>
 </html>
