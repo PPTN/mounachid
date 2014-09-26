@@ -2,7 +2,7 @@
 	require "ini.php";
 	if ($_GET['cin'])
 	try {
-		$q = $db->prepare('SELECT president from signatures where cin=:cin');
+		$q = $db->prepare('SELECT DISTINCT president from signatures where cin=:cin');
 		$q->bindValue(':cin', ltrim($_GET['cin'],'0'));
 		if ($q->execute()) $presidents = $q->fetchAll(PDO::FETCH_COLUMN);
 	} catch (Exception $e) {
