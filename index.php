@@ -27,7 +27,7 @@
 </div>
 <?php
 	if ($_GET['cin'] && !$presidents) print "<div class='alert alert-success'><b>Vous ne parrainez aucun candidat!</b></div>";
-	if ($presidents) print "<div class='alert alert-error'>Vous parrainez ".implode(' ',$presidents)."</div>";
+	if ($presidents) print "<div class='alert alert-error'>Vous parrainez ".implode(', ',$presidents)."</div>";
 ?>
 </form>
 </div>
