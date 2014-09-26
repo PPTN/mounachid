@@ -3,7 +3,7 @@
 	if ($_GET['cin'])
 	try {
 		$q = $db->prepare('SELECT president from signatures where cin=:cin');
-		$q->bindValue(':cin', $_GET['cin']);
+		$q->bindValue(':cin', ltrim ($_GET['cin'], "0"));
 		if ($q->execute()) $presidents = $q->fetchAll(PDO::FETCH_COLUMN);
 	} catch (Exception $e) {
 		fatal_error($e->getMessage());
@@ -27,7 +27,7 @@
 </div>
 <?php
 	if ($_GET['cin'] && !$presidents) print "<div class='alert alert-success'><b>Vous ne parrainez aucun candidat!</b></div>";
-	if ($presidents) print "<div class='alert alert-error'>Vous parrainez ".implode(' ',$presidents)."</div>";
+	if ($presidents) print "<div class='alert alert-error'>Vous parrainez ".implode(', ',$presidents)."</div>";
 ?>
 </form>
 </div>
