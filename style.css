@@ -1,0 +1,24 @@
+body {
+  background: #fefefe !important;
+}
+.alert {
+  width: 600px
+}
+form {
+  margin: 20px auto !important;
+  width: 400px;
+  height: 445px;
+  background: #f1f1f1;
+  text-align:center;
+  padding: 50px;
+  border-radius: 7px;
+  transition: .3s all ease;
+  -webkit-transition: .3s all ease;
+  -webkit-box-shadow: 0 0 10px 0 #999999;
+  -moz-box-shadow: 0 0 10px 0 #999999;
+  box-shadow: 0 0 10px 0 #999999;
+}
+form ul li, h1,.alert{
+  margin: 20px auto !important;
+  text-align:center;
+}
