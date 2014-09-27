@@ -26,7 +26,17 @@
 <button type='submit' class='btn'>Vérifier</button>
 </div>
 <?php
-	if ($_POST['cin'] && !$presidents) print "<div class='alert alert-success'><b>Vous ne parrainez aucun candidat!</b></div>";
+	if ($_POST['cin'] && !$presidents) print "<div class='alert alert-success'><b>Vous ne parrainez aucun des candidats suivants :</b><br/><ul>
+<li>Abderrahim Zouari</li>
+<li>Ali Chourabi</li>
+<li>Beji Caïd Essebsi</li>
+<li>Feris Mabrouk</li>
+<li>Hachemi Hamdi</li>
+<li>Mustapha Kamel Nabli</li>
+<li>Noureddine Hached</li>
+<li>Safi Saïd</li>
+<li>Slim Riahi</li>
+	</ul></div>";
 	if ($presidents) print "<div class='alert alert-error'>Vous parrainez :<br/><ol><li>". implode("</li><li>", $presidents) ."</ol></div>";
 ?>
 </form>
