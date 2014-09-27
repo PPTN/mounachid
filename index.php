@@ -1,9 +1,9 @@
 <?php
 	require "ini.php";
-	if ($_GET['cin'])
+	if ($_POST['cin'])
 	try {
 		$q = $db->prepare('SELECT DISTINCT president from signatures where cin=:cin');
-		$q->bindValue(':cin', ltrim($_GET['cin'],'0'));
+		$q->bindValue(':cin', ltrim($_POST['cin'],'0'));
 		if ($q->execute()) $presidents = $q->fetchAll(PDO::FETCH_COLUMN);
 	} catch (Exception $e) {
 		fatal_error($e->getMessage());
@@ -19,14 +19,14 @@
 </body>
 <div class="container row-fluid">
 <h1>Parrainage Présidentielles 2014</h1>
-<form action="." method="get">
+<form action="." method="post">
 <p>Saisissez votre N° CIN, nous allons vérifier si vous parrainez un candidat aux élections présidentielles</p>
 <div class='input-append'>
 <input type='text' name='cin' placeholder='Votre CIN' />
 <button type='submit' class='btn'>Vérifier</button>
 </div>
 <?php
-	if ($_GET['cin'] && !$presidents) print "<div class='alert alert-success'><b>Vous ne parrainez aucun candidat!</b></div>";
+	if ($_POST['cin'] && !$presidents) print "<div class='alert alert-success'><b>Vous ne parrainez aucun candidat!</b></div>";
 	if ($presidents) print "<div class='alert alert-error'>Vous parrainez :<br/><ol><li>". implode("</li><li>", $presidents) ."</ol></div>";
 ?>
 </form>
