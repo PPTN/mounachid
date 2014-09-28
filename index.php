@@ -1,6 +1,6 @@
 <?php
 require_once "ini.php";
-if (!empty($_POST['cin'])) {
+if (!empty($_POST['cin']) && is_numeric(ltrim($_POST['cin'],'0')) ) {
 	try {
 		$q = $db->prepare('SELECT DISTINCT president from signatures where cin=:cin');
 		$q->bindValue(':cin', ltrim($_POST['cin'],'0'));
@@ -21,7 +21,7 @@ if (!empty($_POST['cin'])) {
 		fatal_error($e->getMessage());
 	}
 } else {
-	$print = "<div class='alert alert-error'>Veuillez saisir un numéro de CIN</div>";
+	$print = "<div class='alert alert-error'>Veuillez saisir un numéro de CIN valide.</div>";
 }
 ?>
 <!DOCTYPE html>
@@ -38,22 +38,9 @@ if (!empty($_POST['cin'])) {
 <p>Saisissez votre N° CIN, nous allons vérifier si vous parrainez un candidat aux élections présidentielles</p>
 <div class='input-append'>
 <input type='text' name='cin' placeholder='Votre CIN' />
-<button type='submit' class='btn'>Vérifier</button>
+<button type='submit' class='btn btn-info'>Vérifier</button>
 </div>
-<?php
-	if ($_POST['cin'] && !$presidents) print "<div class='alert alert-success'><b>Vous ne parrainez aucun des candidats suivants :</b><br/><ul>
-<li>Abderrahim Zouari</li>
-<li>Ali Chourabi</li>
-<li>Beji Caïd Essebsi</li>
-<li>Feris Mabrouk</li>
-<li>Hachemi Hamdi</li>
-<li>Mustapha Kamel Nabli</li>
-<li>Noureddine Hached</li>
-<li>Safi Saïd</li>
-<li>Slim Riahi</li>
-	</ul></div>";
-	if ($presidents) print "<div class='alert alert-error'>Vous parrainez :<br/><ol><li>". implode("</li><li>", $presidents) ."</ol></div>";
-?>
+<?php if($print) echo $print; ?>
 </form>
 <small class="muted pull-right" style="position:fixed; right:5px; bottom:5px;">Contact <a href="https://twitter.com/trojette">@trojette</a> & <a href="https://twitter.com/sarhantn">@sarhantn</a> & <a href="https://twitter.com/slim404">@slim404</a> source code <a href="https://github.com/PPTN/mounachid">https://github.com/PPTN/mounachid</a></small>
 </div>
