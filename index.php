@@ -1,6 +1,6 @@
 <?php
 require_once "ini.php";
-if (!empty($_POST['cin']) && is_numeric(ltrim($_POST['cin'],'0')) ) {
+if (is_numeric(ltrim($_POST['cin'],'0')) ) {
 	try {
 		$q = $db->prepare('SELECT DISTINCT president from signatures where cin=:cin');
 		$q->bindValue(':cin', ltrim($_POST['cin'],'0'));
@@ -21,7 +21,7 @@ if (!empty($_POST['cin']) && is_numeric(ltrim($_POST['cin'],'0')) ) {
 		fatal_error($e->getMessage());
 	}
 } else {
-	$print = "<div class='alert alert-error'>Veuillez saisir un numéro de CIN valide.</div>";
+	if (isset($_POST['cin'])) $print = "<div class='alert alert-error'>Veuillez saisir un numéro de CIN valide.</div>";
 }
 ?>
 <!DOCTYPE html>
